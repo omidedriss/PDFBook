@@ -4,7 +4,7 @@ import android.app.Application;
 import android.app.NotificationManager;
 import android.os.Build;
 
-public class NotificationChannel extends Application {
+public class NotificationChannelCustom extends Application {
     public static final String CHANNEL_ID ="myNotification Channel";
     public static final String NOTIFICATION_TITLE="PDF BOOK"+"\n"+"کتاب خوان من";
     @Override

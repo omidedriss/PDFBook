@@ -15,6 +15,15 @@
         android:layout_height="wrap_content"
         android:id="@+id/bt_select"
         android:text="Select PDF"/>
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"
+        tools:layout_editor_absoluteX="238dp"
+        tools:layout_editor_absoluteY="378dp"
+        tools:ignore="MissingConstraints" />
+
 
     <TextView
         android:layout_width="match_parent"

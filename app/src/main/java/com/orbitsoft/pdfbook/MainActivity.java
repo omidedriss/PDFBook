@@ -1,7 +1,5 @@
 package com.orbitsoft.pdfbook;
 
-import static com.orbitsoft.pdfbook.Notification.NotificationChannel.CHANNEL_ID;
-
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -22,15 +20,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 
-
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
-
 import com.orbitsoft.pdfbook.Notification.myNotification;
-
-import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
     private Button button;
@@ -53,8 +43,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                myNotification  myotification=new myNotification(MainActivity.this);
-                myotification.showNotification();
+
+                        myNotification  myotification=new myNotification(MainActivity.this);
+                        myotification.showNotification();
+
+
             }
         });
 
