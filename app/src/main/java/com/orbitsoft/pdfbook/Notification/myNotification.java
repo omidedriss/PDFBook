@@ -76,6 +76,7 @@ public class myNotification {
         channel.enableLights(true);
         channel.enableVibration(true);
         channel.setShowBadge(true);
+
         channel.setLockscreenVisibility(Notification.VISIBILITY_PUBLIC);
        // getManager().createNotificationChannel(channel);
 
@@ -88,7 +89,6 @@ public class myNotification {
                     .setSmallIcon(R.drawable.ic_baseline_menu_book_24)
                     .setLargeIcon(bitmap)
                   //  .setSound(soundUri)
-
                     .setContentIntent(pendingIntent)
                     .setStyle(new Notification.MediaStyle()
 
