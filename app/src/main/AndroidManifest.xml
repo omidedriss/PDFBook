@@ -17,8 +17,10 @@
         android:theme="@style/Theme.PDFBook"
         tools:targetApi="31">
         <activity
-            android:name=".highLight"
-            android:exported="false" />
+            android:name=".pdfHighlight.highLight"
+            android:windowSoftInputMode='adjustNothing|stateHidden'
+            android:exported="false"
+            tools:ignore="MissingClass" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
