@@ -3,7 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/PDFBook13/app/src/main/res/layout/activity_high_light.xml" value="0.24635416666666668" />
+        <entry key="..\:/PDFBook13/app/src/main/res/layout/activity_high_light.xml" value="0.234375" />
+        <entry key="..\:/PDFBook13/app/src/main/res/layout/activity_main.xml" value="0.234375" />
+        <entry key="..\:/PDFBook13/app/src/main/res/layout/select.xml" value="0.234375" />
       </map>
     </option>
   </component>
