@@ -27,13 +27,15 @@ import androidx.core.app.ActivityCompat;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnDrawListener;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
-import com.orbitsoft.pdfbook.Notification.myNotification;
+
+import top.defaults.colorpicker.ColorPickerPopup;
 //import com.xeoh.android.texthighlighter.TextHighlighter;
 
 public class MainActivity extends AppCompatActivity implements OnDrawListener {
     private Button button;
 
     // Initialize variable
+    private int selectedColor=0;
     Button btSelect;
     TextView tvUri, tvPath;
     ActivityResultLauncher<Intent> resultLauncher;
@@ -53,8 +55,12 @@ public class MainActivity extends AppCompatActivity implements OnDrawListener {
             public void onClick(View v) {
 
 
-                        myNotification  myotification=new myNotification(MainActivity.this);
-                        myotification.showNotification();
+                        //myNotification  myotification=new myNotification(MainActivity.this);
+                       // myotification.showNotification();
+
+                getMyColor(v);
+
+
 
 
             }
@@ -169,6 +175,24 @@ public class MainActivity extends AppCompatActivity implements OnDrawListener {
                 });
     }
 
+    private void getMyColor(View v) {
+        new ColorPickerPopup.Builder(this)
+                .initialColor(Color.BLUE)
+                .enableAlpha(true)
+                .okTitle("Choose")
+                .cancelTitle("Cancel")
+                .showIndicator(true)
+                .showValue(true)
+                .onlyUpdateOnTouchEventUp(true)
+                .build()
+                .show(v, new ColorPickerPopup.ColorPickerObserver() {
+                    @Override
+                    public void onColorPicked(int color) {
+                        selectedColor=color;
+                    }
+                });
+    }
+
     private void selectPDF()
     {
         // Initialize intent
@@ -210,5 +234,18 @@ public class MainActivity extends AppCompatActivity implements OnDrawListener {
     @Override
     public void onLayerDrawn(Canvas canvas, float pageWidth, float pageHeight, int displayedPage) {
 
+        canvas.drawColor(selectedColor);
+
     }
 }
+
+
+
+
+
+
+
+
+
+
+
