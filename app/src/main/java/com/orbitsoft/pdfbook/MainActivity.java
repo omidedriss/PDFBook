@@ -28,11 +28,13 @@ import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnDrawListener;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 
+import java.sql.Time;
+
 import top.defaults.colorpicker.ColorPickerPopup;
 //import com.xeoh.android.texthighlighter.TextHighlighter;
 
 public class MainActivity extends AppCompatActivity implements OnDrawListener {
-    private Button button;
+    private Button button,time;
 
     // Initialize variable
     private int selectedColor=0;
@@ -49,6 +51,15 @@ public class MainActivity extends AppCompatActivity implements OnDrawListener {
         setContentView(R.layout.select);
        
         button=(Button) findViewById(R.id.button);
+        time=(Button) findViewById(R.id.time1);
+        time.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                        Intent i = new Intent(MainActivity.this, TimeActivity.class);
+                startActivity(i);
+            }
+        });
         button.setOnClickListener(new View.OnClickListener() {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
@@ -236,6 +247,7 @@ public class MainActivity extends AppCompatActivity implements OnDrawListener {
 
         canvas.drawColor(selectedColor);
 
+       // canvas.drawColor();
     }
 }
 

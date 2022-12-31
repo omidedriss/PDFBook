@@ -23,10 +23,16 @@
         tools:layout_editor_absoluteX="238dp"
         tools:layout_editor_absoluteY="378dp"
         tools:ignore="MissingConstraints" />
+    <Button
+        android:text="Time"
+        android:id="@+id/time1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
     <com.github.barteksc.pdfviewer.PDFView
         android:id="@+id/pdfView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
+
 
     <TextView
         android:layout_width="match_parent"
