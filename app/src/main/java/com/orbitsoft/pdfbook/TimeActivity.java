@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class TimeActivity extends AppCompatActivity {
     TimePicker tp_time;
     TextView tv_display;
     Button btn_set, btn_reset;
@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_time);
 
         tv_display = (TextView)findViewById(R.id.tv_display);
         tp_time = (TimePicker)findViewById(R.id.tp_time);
@@ -69,13 +69,13 @@ public class MainActivity extends AppCompatActivity {
             private void setAlarm(long timeInMillis, Calendar c) {
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-                Intent intent = new Intent(MainActivity.this, AlarmAdapter.class);
+                Intent intent = new Intent(TimeActivity.this, AlarmAdapter.class);
 
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(TimeActivity.this, 0, intent, 0);
 
                 alarmManager.setRepeating(AlarmManager.RTC, timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent);
 
-                Toast.makeText(MainActivity.this, "تنظیم زمان", Toast.LENGTH_SHORT).show();
+                Toast.makeText(TimeActivity.this, "تنظیم زمان", Toast.LENGTH_SHORT).show();
                 int hour = c.get(Calendar.HOUR_OF_DAY);
                 int minute = c.get(Calendar.MINUTE);
                 int ampm = c.get(Calendar.AM_PM);
@@ -103,9 +103,9 @@ public class MainActivity extends AppCompatActivity {
 
                 AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-                Intent intent = new Intent(MainActivity.this, AlarmAdapter.class);
+                Intent intent = new Intent(TimeActivity.this, AlarmAdapter.class);
 
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.this, 0, intent, 0);
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(TimeActivity.this, 0, intent, 0);
 
                 alarmManager.cancel(pendingIntent);
 
