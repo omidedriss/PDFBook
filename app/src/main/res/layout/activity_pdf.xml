@@ -4,19 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context="abbas.PdfActivity">
 
-
-
-    <Button
-        android:id="@+id/bt_add"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="301dp"
-        tools:layout_editor_absoluteY="648dp"
-        tools:ignore="MissingConstraints"
-        app:srcCompat="@drawable/btn"
-        />
+    <com.github.barteksc.pdfviewer.PDFView
+        android:id="@+id/pdfView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
