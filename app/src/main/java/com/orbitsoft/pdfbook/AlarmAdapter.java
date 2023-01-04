@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 public class AlarmAdapter extends BroadcastReceiver {
 
+
+
+    //
     @Override
     public void onReceive(Context context, Intent intent) {
         Toast.makeText(context, "وقت مطالعه فرا رسیده", Toast.LENGTH_SHORT).show();
