@@ -7,17 +7,22 @@ import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
+import android.text.Html;
 import android.Manifest;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.github.barteksc.pdfviewer.listener.OnLongPressListener;
+import com.xeoh.android.texthighlighter.TextHighlighter;
+import top.defaults.colorpicker.ColorPickerPopup;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnDrawListener;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
@@ -26,6 +31,8 @@ import com.orbitsoft.pdfbook.R;
 
 public class PdfActivity extends AppCompatActivity implements OnDrawListener {
     ActivityResultLauncher<Intent> resultLauncher;
+    TextView tvUri;
+
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +45,7 @@ public class PdfActivity extends AppCompatActivity implements OnDrawListener {
 
     public void show (){
         PDFView pdfView = findViewById(R.id.pdfView);
+      //  tvUri = findViewById(R.id.tv_test);
         resultLauncher = registerForActivityResult(
                 new ActivityResultContracts
                         .StartActivityForResult(),
@@ -62,7 +70,7 @@ public class PdfActivity extends AppCompatActivity implements OnDrawListener {
                             // set Uri on text view
                             pdfView.fromUri(sUri).enableSwipe(true) // allows to block changing pages using swipe
                                     .swipeHorizontal(false)
-                                    .enableDoubletap(true)
+                                    .enableDoubletap(false)
                                     .defaultPage(0)
                                     // allows to draw something on the current page, usually visible in the middle of the screen
                                     .onDraw(PdfActivity.this)
@@ -73,9 +81,9 @@ public class PdfActivity extends AppCompatActivity implements OnDrawListener {
                                     // .onPageScroll(onPageScrollListener)
                                     // .onError(onErrorListener)
                                     // .onPageError(onPageErrorListener)
-                                    // .onRender(onRenderListener) // called after document is rendered for the first time
+                                     //.onRender(onRenderListener) // called after document is rendered for the first time
                                     // called on single tap, return true if handled, false to toggle scroll handle visibility
-                                    //  .onTap(onTapListener)
+                                    //.onTap(onTapListener)
                                     //  .onLongPress(onLongPressListener)
                                     .enableAnnotationRendering(false) // render annotations (such as comments, colors or forms)
                                     .password(null)
@@ -91,16 +99,16 @@ public class PdfActivity extends AppCompatActivity implements OnDrawListener {
                                     .pageFling(false) // make a fling change only a single page like ViewPager
                                     .nightMode(false) // toggle night mode
                                     .load();
-//                            new TextHighlighter()
-//                                    .setBackgroundColor( Color.parseColor( "#FFFF00" ) )
-//                                    .setForegroundColor( Color.GREEN )
-//                                    .addTarget( tvUri )
-//                                    .highlight( tvUri.getText().toString(), TextHighlighter.BASE_MATCHER );
-
-//                            tvUri.setText(Html.fromHtml(
-//                                    "<big><b>PDF Uri</b></big><br>"
-//                                            + sUri));
-
+                         /* new TextHighlighter()
+                                    .setBackgroundColor( Color.parseColor( "#FFFF00" ) )
+                                    .setForegroundColor( Color.GREEN )
+                                    .addTarget( tvUri )
+                                    .highlight( tvUri.getText().toString(), TextHighlighter.BASE_MATCHER );
+*/
+                        /*   tvUri.setText(Html.fromHtml(
+                                    "<big><b>PDF Uri</b></big><br>"
+                                            + sUri));
+*/
 
                         }
                     }
@@ -148,8 +156,8 @@ public class PdfActivity extends AppCompatActivity implements OnDrawListener {
                         selectedColor=color;
                     }
                 });
-    }*/
-
+    }
+*/
     private void selectPDF()
     {
         // Initialize intent
@@ -197,5 +205,4 @@ public class PdfActivity extends AppCompatActivity implements OnDrawListener {
         // canvas.drawColor();
     }
 
-
-    }
+}

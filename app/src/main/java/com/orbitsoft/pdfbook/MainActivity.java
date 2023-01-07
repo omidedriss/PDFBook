@@ -22,14 +22,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
-
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnDrawListener;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
-
 import java.sql.Time;
 
+import abbas.Hilighter;
 import abbas.PdfActivity;
 
 //import top.defaults.colorpicker.ColorPickerPopup;
@@ -85,7 +83,7 @@ public class MainActivity extends AppCompatActivity{
         btSelect.setOnClickListener(v -> {
             Intent next = new Intent(getApplicationContext(), PdfActivity.class);
             startActivity(next);
-            finish();
+
 
 
 
