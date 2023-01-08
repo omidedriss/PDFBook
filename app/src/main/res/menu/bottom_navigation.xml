@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:title="Hilight"
+        android:id="@+id/hilight"
+        android:icon="@drawable/star_icon"
+        />
+    <item
+        android:title="Home"
+        android:id="@+id/home"
+        android:icon="@drawable/home_icon"
+        />
+
+    <item
+    android:title="Alarm"
+    android:id="@+id/alarm"
+    android:icon="@drawable/alarm_icon_pdf"
+    />
+</menu>

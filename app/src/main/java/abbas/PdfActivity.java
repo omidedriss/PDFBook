@@ -6,6 +6,7 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import android.text.Html;
 import android.Manifest;
@@ -32,13 +33,13 @@ import com.orbitsoft.pdfbook.R;
 public class PdfActivity extends AppCompatActivity implements OnDrawListener {
     ActivityResultLauncher<Intent> resultLauncher;
     TextView tvUri;
-
+    ConstraintLayout constraintLayout;
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf);
-
+        constraintLayout = findViewById(R.id.constraintForClick);
         show();
     }
 

@@ -1,41 +1,26 @@
 package com.orbitsoft.pdfbook;
 
-import android.Manifest;
-import android.annotation.SuppressLint;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Build;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.os.Bundle;
-import android.text.Html;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-import android.widget.Toast;
-import androidx.activity.result.ActivityResult;
-import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
-import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-import com.github.barteksc.pdfviewer.PDFView;
-import com.github.barteksc.pdfviewer.listener.OnDrawListener;
-import com.github.barteksc.pdfviewer.util.FitPolicy;
-import java.sql.Time;
 
-import abbas.Hilighter;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import abbas.PdfActivity;
 
 //import top.defaults.colorpicker.ColorPickerPopup;
 //import com.xeoh.android.texthighlighter.TextHighlighter;
 
-public class MainActivity extends AppCompatActivity{
-    private Button button, time;
-
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
+    private Button  time,button;
+    private BottomNavigationView button_nav;
     // Initialize variable
     private int selectedColor = 0;
     Button btSelect;
@@ -45,8 +30,8 @@ public class MainActivity extends AppCompatActivity{
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        setContentView(R.layout.add_btn);
+        setContentView(R.layout.activity_main);
+        entry();
 
         //button=(Button) findViewById(R.id.bt_select);
         // time=(Button) findViewById(R.id.time1);
@@ -77,22 +62,61 @@ public class MainActivity extends AppCompatActivity{
 
 
         // assign variable
-        btSelect = findViewById(R.id.bt_select);
+
         //  tvUri = findViewById(R.id.tv_uri);
         //tvPath = findViewById(R.id.tv_path);
-        btSelect.setOnClickListener(v -> {
+        button_nav.setOnNavigationItemSelectedListener(this);
+     /*   btSelect.setOnClickListener(v -> {
             Intent next = new Intent(getApplicationContext(), PdfActivity.class);
             startActivity(next);
 
 
+        });*/
 
 
-        });
 
-        // Initialize result launcher
+        }
+        public void entry(){
+        //btSelect=findViewById(R.id.bt_select);
+        button_nav=findViewById(R.id.nav_btn);
+        }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+
+            case R.id.home:
+
+                HomeFragment fragment = new HomeFragment();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.frame_layout, fragment, "");
+                fragmentTransaction.commit();
+
+                return true;
+
+            case R.id.alarm:
+
+                AlarmFragment fragment1 = new AlarmFragment();
+                FragmentTransaction fragmentTransaction1 = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction1.replace(R.id.frame_layout, fragment1);
+                fragmentTransaction1.commit();
+                return true;
+
+            case R.id.hilight:
+
+                HilightFragment fragment2 = new HilightFragment();
+                FragmentTransaction fragmentTransaction2 = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction2.replace(R.id.frame_layout, fragment2, "");
+                fragmentTransaction2.commit();
+                return true;
+
+        }
+
+        return false;
     }
 }
+
+
 
 
 
