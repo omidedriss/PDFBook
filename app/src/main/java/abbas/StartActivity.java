@@ -21,7 +21,7 @@ VideoView videoView;
         setContentView(R.layout.activity_start);
         videoView=findViewById(R.id.vvideoView);
         Random random = new Random();
-        int r = random.nextInt(3);
+        int r = random.nextInt(7);
 
         if (r==0) {
             videoView.setVideoPath("android.resource://"+ getPackageName()+"/"+R.raw.start);
@@ -34,7 +34,23 @@ VideoView videoView;
             videoView.setVideoPath("android.resource://"+ getPackageName()+"/"+R.raw.start_2);
             videoView.start();}
         if(r==3){
-            videoView.setVideoPath("android.resource://"+ getPackageName()+"/"+R.raw.start_2);
+            videoView.setVideoPath("android.resource://"+ getPackageName()+"/"+R.raw.start_3);
+            videoView.start();
+        }
+        if(r==4){
+            videoView.setVideoPath("android.resource://"+ getPackageName()+"/"+R.raw.start_4);
+            videoView.start();
+        }
+        if(r==5){
+            videoView.setVideoPath("android.resource://"+ getPackageName()+"/"+R.raw.start_5);
+            videoView.start();
+        }
+        if(r==6){
+            videoView.setVideoPath("android.resource://"+ getPackageName()+"/"+R.raw.start_6);
+            videoView.start();
+        }
+        if(r==7){
+            videoView.setVideoPath("android.resource://"+ getPackageName()+"/"+R.raw.start_7);
             videoView.start();
         }
 
