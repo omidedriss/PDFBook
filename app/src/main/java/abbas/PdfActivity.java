@@ -22,7 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.listener.OnLongPressListener;
-import com.xeoh.android.texthighlighter.TextHighlighter;
+//import com.xeoh.android.texthighlighter.TextHighlighter;
 import top.defaults.colorpicker.ColorPickerPopup;
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnDrawListener;

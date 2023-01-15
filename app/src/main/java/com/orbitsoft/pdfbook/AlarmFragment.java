@@ -1,12 +1,24 @@
 package com.orbitsoft.pdfbook;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
+
+import java.util.Calendar;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,7 +35,9 @@ public class AlarmFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    TimePicker tp_time;
+    TextView tv_display;
+    Button btn_set, btn_reset;
     public AlarmFragment() {
         // Required empty public constructor
     }
@@ -59,6 +73,97 @@ public class AlarmFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_alarm, container, false);
+      View v=  inflater.inflate(R.layout.activity_time, container, false);
+
+        tv_display = (TextView)v.findViewById(R.id.tv_display);
+        tp_time = (TimePicker)v.findViewById(R.id.tp_time);
+        btn_set = (Button)v.findViewById(R.id.btn_set);
+        btn_reset = (Button)v.findViewById(R.id.btn_reset);
+
+        btn_set.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Calendar calendar = Calendar.getInstance();
+
+                if(Build.VERSION.SDK_INT >= 23) {
+
+                    calendar.set(
+                            calendar.get(Calendar.YEAR),
+                            calendar.get(Calendar.MONTH),
+                            calendar.get(Calendar.DAY_OF_MONTH),
+                            tp_time.getHour(),
+                            tp_time.getMinute(),
+                            0
+                    );
+
+
+
+                }else{
+                    calendar.set(
+                            calendar.get(Calendar.YEAR),
+                            calendar.get(Calendar.MONTH),
+                            calendar.get(Calendar.DAY_OF_MONTH),
+                            tp_time.getCurrentHour(),
+                            tp_time.getCurrentMinute(),
+                            0
+                    );
+                }
+
+
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                    setAlarm(calendar.getTimeInMillis(), calendar);
+                }
+            }
+
+
+            @RequiresApi(api = Build.VERSION_CODES.S)
+            private void setAlarm(long timeInMillis, Calendar c) {
+                AlarmManager alarmManager = (AlarmManager) MainActivity.Instance.getSystemService(Context.ALARM_SERVICE);
+
+                Intent intent = new Intent(MainActivity.Instance, AlarmAdapter.class);
+
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.Instance, 0, intent, PendingIntent.FLAG_MUTABLE);
+
+                alarmManager.setRepeating(AlarmManager.RTC, timeInMillis, AlarmManager.INTERVAL_DAY, pendingIntent);
+
+                Toast.makeText(MainActivity.Instance, "تنظیم زمان", Toast.LENGTH_SHORT).show();
+                int hour = c.get(Calendar.HOUR_OF_DAY);
+                int minute = c.get(Calendar.MINUTE);
+                int ampm = c.get(Calendar.AM_PM);
+                String day = "";
+                if(ampm == Calendar.AM){
+                    day = "AM";
+                }else if(ampm == Calendar.PM){
+                    day = "PM";
+                }
+                String timeText = "زمان مطالعه بعدی: ";
+                timeText += minute +": " +  hour+ " " + day;
+                tv_display.setText(timeText);
+
+            }
+
+
+        });
+
+
+
+
+        btn_reset.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlarmManager alarmManager = (AlarmManager) MainActivity.Instance.getSystemService(Context.ALARM_SERVICE);
+
+                Intent intent = new Intent(MainActivity.Instance, AlarmAdapter.class);
+
+                PendingIntent pendingIntent = PendingIntent.getBroadcast(MainActivity.Instance, 0, intent, PendingIntent.FLAG_MUTABLE);
+
+                alarmManager.cancel(pendingIntent);
+
+                tv_display.setText("زمان مطالعه تنظیم نشده");
+
+            }
+        });
+        return v;
     }
 }

@@ -8,10 +8,13 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <TextView
+    <com.github.barteksc.pdfviewer.PDFView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/home_icon" />
+        android:id="@+id/pdfView"
+        >
+
+    </com.github.barteksc.pdfviewer.PDFView>
     <Button
     android:id="@+id/bt_select"
     android:layout_width="55dp"
