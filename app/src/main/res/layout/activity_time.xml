@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TimeActivity">
+
+    <TextView
+        android:id="@+id/tv_display"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="زمان مطالعه تنظیم نشده"
+        android:textSize="20sp"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"/>
+
+    <TimePicker
+        android:layout_below="@+id/tv_display"
+        android:id="@+id/tp_time"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent" />
+
+    <Button
+        android:id="@+id/btn_set"
+        android:layout_below="@+id/tp_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="تنظیم زمان مطالعه بعدی"/>
+
+    <Button
+        android:id="@+id/btn_reset"
+        android:layout_below="@+id/btn_set"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="بازنشانی زمان مطالعه"/>
+
+
+
+</RelativeLayout>
