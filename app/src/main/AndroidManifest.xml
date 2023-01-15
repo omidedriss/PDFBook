@@ -6,13 +6,46 @@
 
     <application
         android:allowBackup="true"
+
+        android:icon="@mipmap/dg_book"
+
         android:icon="@mipmap/ic_launcher"
+
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/dg_book"
         android:supportsRtl="true"
         android:theme="@style/Theme.PDFBook">
+
         <activity
             android:name=".TimeActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+
+        <activity
+            android:name="abbas.StartActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="abbas.Hilighter"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name="abbas.PdfActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -21,11 +54,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 
