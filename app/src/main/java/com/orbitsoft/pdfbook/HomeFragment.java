@@ -20,9 +20,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
+
+import java.io.File;
+import java.net.URI;
 
 import abbas.PdfActivity;
 
@@ -32,12 +36,12 @@ import abbas.PdfActivity;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
-Button bt_select;
+    Button bt_select;
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-   public static PDFView pdfView;
+    public static PDFView pdfView;
     public static View v;
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -79,14 +83,25 @@ Button bt_select;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-       v=  inflater.inflate(R.layout.fragment_home, container, false);
-      Button btSelect = v.findViewById(R.id.bt_select);
-         pdfView = v.findViewById(R.id.pdfView);
+        v = inflater.inflate(R.layout.fragment_home, container, false);
+        Button btSelect = v.findViewById(R.id.bt_select);
+        pdfView = v.findViewById(R.id.pdfView);
+
+
+        //gereftan adress file iaz library
+        Bundle bundle=this.getArguments();
+        if (bundle!=null){
+           String address= bundle.getString("address");
+            File f=new File(address);
+            Uri uri= Uri.fromFile(f);
+            pdf(uri);
+        }
+
         // Set click listener on button
         btSelect.setOnClickListener(
                 new View.OnClickListener() {
-                    @Override public void onClick(View v)
-                    {
+                    @Override
+                    public void onClick(View v) {
                         // check condition
                         if (ActivityCompat.checkSelfPermission(
                                 MainActivity.Instance,
@@ -98,12 +113,11 @@ Button bt_select;
                             // Result permission
                             ActivityCompat.requestPermissions(
                                     MainActivity.Instance,
-                                    new String[] {
+                                    new String[]{
                                             Manifest.permission
-                                                    .READ_EXTERNAL_STORAGE },
+                                                    .READ_EXTERNAL_STORAGE},
                                     1);
-                        }
-                        else {
+                        } else {
                             // When permission is granted
                             // Create method
                             selectPDF();
@@ -115,15 +129,15 @@ Button bt_select;
         return v;
 
     }
-    private void selectPDF()
-    {
+
+    private void selectPDF() {
         // Initialize intent
         Intent intent
                 = new Intent(Intent.ACTION_GET_CONTENT);
         // set type
         intent.setType("application/pdf");
         // Launch intent
-       // MainActivity.Instance.setResult(1,intent);
+        // MainActivity.Instance.setResult(1,intent);
         MainActivity.Instance.startActivityForResult(intent, 1);
 
 //        ActivityResultLauncher<String> mGetContent = MainActivity.Instance.registerForActivityResult(new ActivityResultContracts.GetContent(),
@@ -252,7 +266,8 @@ Button bt_select;
 //                }));
 //        MainActivity.Instance.getActivityResultRegistry().resultLauncher.launch(intent);
     }
-    public static void pdf(Uri sUri){
+
+    public static void pdf(Uri sUri) {
         pdfView = v.findViewById(R.id.pdfView);
         pdfView.fromUri(sUri).enableSwipe(true) // allows to block changing pages using swipe
                 .swipeHorizontal(false)
@@ -286,4 +301,6 @@ Button bt_select;
                 .nightMode(false) // toggle night mode
                 .load();
     }
+
+
 }

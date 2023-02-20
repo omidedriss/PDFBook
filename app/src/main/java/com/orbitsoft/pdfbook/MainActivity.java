@@ -4,40 +4,28 @@ import android.content.Intent;
 
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
-import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.fragment.app.FragmentTransaction;
-import android.content.pm.PackageManager;
+
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.net.Uri;
-import android.os.Build;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import abbas.PdfActivity;
 
 
 //import top.defaults.colorpicker.ColorPickerPopup;
 //import com.xeoh.android.texthighlighter.TextHighlighter;
 
-import com.github.barteksc.pdfviewer.PDFView;
 import com.github.barteksc.pdfviewer.listener.OnDrawListener;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
-
-import java.sql.Time;
-
-import top.defaults.colorpicker.ColorPickerPopup;
 //import com.xeoh.android.texthighlighter.TextHighlighter;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener ,OnDrawListener{
@@ -428,6 +416,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 fragmentTransaction2.commit();
                 return true;
 
+            case R.id.library:
+                libraryFragment fragment3 = new libraryFragment();
+                FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction3.replace(R.id.frame_layout, fragment3, "");
+                fragmentTransaction3.commit();
+                return true;
         }
 
         return false;

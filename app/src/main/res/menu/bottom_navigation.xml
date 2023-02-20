@@ -17,4 +17,10 @@
     android:id="@+id/alarm"
     android:icon="@drawable/alarm_icon_pdf"
     />
+    <item
+        android:title="Library"
+        android:id="@+id/library"
+        android:icon="@drawable/ic_library"
+
+        />
 </menu>

@@ -54,7 +54,8 @@ public class myNotification {
         PendingIntent pendingIntent;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
 //
-            pendingIntent = PendingIntent.getActivity(context, 0, intent,  PendingIntent.FLAG_MUTABLE);
+            pendingIntent = PendingIntent.getActivity
+                    (context, 0, intent,  PendingIntent.FLAG_MUTABLE);
         }
         else
         {
@@ -100,6 +101,7 @@ public class myNotification {
 
         NotificationManagerCompat nft = NotificationManagerCompat.from(context);
 //        NotificationManager nft =
+//
 //                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         nft.createNotificationChannel(channel);
         nft.notify(0, notification);
