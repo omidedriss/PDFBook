@@ -1,7 +1,6 @@
 package com.orbitsoft.pdfbook;
 
 import static android.Manifest.permission.READ_EXTERNAL_STORAGE;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 import static java.nio.file.Files.walk;
 
 import android.annotation.SuppressLint;
@@ -34,14 +33,13 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 public class libraryFragment extends Fragment implements recyclerInterface {
     RecyclerView RecyclerView;
 
     private  boolean readPermisson=false;
     private  boolean writPermission=false;
-    private ArrayList<File> mySongs;
+    private ArrayList<File> myPdfFiles;
     private ActivityResultLauncher<Intent> activityResultLauncher;
     private String[] permissions = {READ_EXTERNAL_STORAGE};
 
@@ -162,11 +160,11 @@ public class libraryFragment extends Fragment implements recyclerInterface {
     }
 
     public void displayPdfFiles(){
-         mySongs= findPdfFiles(Environment.getExternalStorageDirectory());
+         myPdfFiles = findPdfFiles(Environment.getExternalStorageDirectory());
 
         RecyclerView.setHasFixedSize(true);
         RecyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 4));
-        recyclerAdapter adapter = new recyclerAdapter(this.getContext(), mySongs,this);
+        recyclerAdapter adapter = new recyclerAdapter(this.getContext(), myPdfFiles,this);
         RecyclerView.setAdapter(adapter);
 
 
@@ -176,7 +174,7 @@ public class libraryFragment extends Fragment implements recyclerInterface {
     @Override
     public void onItemClick(int position) {
 
-        String fileAddress=mySongs.get(position).getAbsolutePath();
+        String fileAddress= myPdfFiles.get(position).getAbsolutePath();
         Bundle bundle=new Bundle();
         bundle.putString("address",fileAddress);
         HomeFragment fragment = new HomeFragment();
