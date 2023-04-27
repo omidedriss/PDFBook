@@ -22,10 +22,12 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Environment;
 import android.provider.Settings;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,7 +59,6 @@ public class libraryFragment extends Fragment implements recyclerInterface {
 
         RecyclerView = view.findViewById(R.id.recycler);
         checkPermission2();
-
 
         activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
             @Override
@@ -111,7 +112,6 @@ public class libraryFragment extends Fragment implements recyclerInterface {
     }
 
 
-
     private void requestPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             new AlertDialog.Builder(getActivity())
@@ -141,9 +141,6 @@ public class libraryFragment extends Fragment implements recyclerInterface {
         }
     }
 
-
-
-
     public ArrayList<File> findPdfFiles(File file){
         ArrayList<File> arrayList=new ArrayList<>();
         File[] files=file.listFiles();
@@ -161,10 +158,20 @@ public class libraryFragment extends Fragment implements recyclerInterface {
 
     public void displayPdfFiles(){
          myPdfFiles = findPdfFiles(Environment.getExternalStorageDirectory());
+        StringBuilder a = new StringBuilder();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+            myPdfFiles.forEach(file ->{
+              a.append(file.getName()+"\n");
 
-        RecyclerView.setHasFixedSize(true);
-        RecyclerView.setLayoutManager(new GridLayoutManager(this.getContext(), 4));
-        recyclerAdapter adapter = new recyclerAdapter(this.getContext(), myPdfFiles,this);
+            } );
+        }
+
+
+        recyclerAdapter adapter = new recyclerAdapter(getContext(), myPdfFiles,this);
+
+       // RecyclerView.setHasFixedSize(true);
+
+        RecyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
         RecyclerView.setAdapter(adapter);
 
 

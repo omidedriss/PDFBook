@@ -5,6 +5,7 @@ import android.content.Intent;
 import androidx.activity.result.ActivityResult;
 import androidx.activity.result.ActivityResultCallback;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.graphics.Canvas;
@@ -28,8 +29,8 @@ import com.github.barteksc.pdfviewer.listener.OnDrawListener;
 import com.github.barteksc.pdfviewer.util.FitPolicy;
 //import com.xeoh.android.texthighlighter.TextHighlighter;
 
-public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener ,OnDrawListener{
-    private Button  time,button;
+public class MainActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener, OnDrawListener {
+    private Button time, button;
     private BottomNavigationView button_nav;
     public static MainActivity Instance;
     // Initialize variable
@@ -37,17 +38,15 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
     private int selectedColor = 0;
 
 
-
     Button btSelect;
     //TextView tvUri, tvPath;
-
 
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        Instance=this;
+        Instance = this;
         entry();
 //        ActivityResultLauncher<String> mGetContent = MainActivity.Instance.registerForActivityResult(new ActivityResultContracts.GetContent(),
 //                new ActivityResultCallback<Uri>() {
@@ -114,8 +113,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         .StartActivityForResult(),
                 new ActivityResultCallback<ActivityResult>() {
                     @Override
-                    public void onActivityResult(ActivityResult result)
-                    {
+                    public void onActivityResult(ActivityResult result) {
                         // Initialize result data
                         Intent data = result.getData();
                         // check condition
@@ -128,7 +126,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                             // Set path on text view
 
                             // set Uri on text view
-                         HomeFragment.Instance.   pdfView.fromUri(sUri).enableSwipe(true) // allows to block changing pages using swipe
+                            HomeFragment.Instance.pdfView.fromUri(sUri).enableSwipe(true) // allows to block changing pages using swipe
                                     .swipeHorizontal(false)
                                     .enableDoubletap(true)
                                     .defaultPage(0)
@@ -380,12 +378,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         });*/
 
 
+    }
 
-        }
-        public void entry(){
+    public void entry() {
         //btSelect=findViewById(R.id.bt_select);
-        button_nav=findViewById(R.id.nav_btn);
-        }
+        button_nav = findViewById(R.id.nav_btn);
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -417,6 +415,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 return true;
 
             case R.id.library:
+
+//                my_fragment1 fragment11 = new my_fragment1();
+//                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+//                transaction.replace(R.id.frame_layout, fragment11);
+//                transaction.commit();
+
                 libraryFragment fragment3 = new libraryFragment();
                 FragmentTransaction fragmentTransaction3 = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction3.replace(R.id.frame_layout, fragment3, "");
@@ -426,11 +430,12 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         return false;
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         try {
-           // Intent data = intent;
+            // Intent data = intent;
             // check condition
             if (data != null) {
                 // When data is not equal to empty
@@ -441,12 +446,13 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                 HomeFragment.pdf(sUri);
 
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             Log.d("", e.getMessage());
 
         }
 
-        }
+    }
+
     @Override
     public void startActivityForResult(Intent intent, int requestCode) {
         super.startActivityForResult(intent, requestCode);
@@ -510,7 +516,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 //                                            + sUri));
 
 
-
     }
 
     @Override
@@ -518,7 +523,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         canvas.drawColor(selectedColor);
 
-       // canvas.drawColor();
+        // canvas.drawColor();
     }
 }
 

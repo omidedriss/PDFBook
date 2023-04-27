@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -13,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class recyclerAdapter extends RecyclerView.Adapter<recyclerAdapter.myViewHolder> {
@@ -21,7 +19,7 @@ private Context context;
 private ArrayList<File> arrayList;
 private recyclerInterface recyclerInterface;
 
-    public recyclerAdapter(Context context, ArrayList<File> arrayList,recyclerInterface recyclerInterface) {
+    public recyclerAdapter(Context context, ArrayList<File> arrayList, recyclerInterface recyclerInterface) {
         this.context = context;
         this.arrayList = arrayList;
         this.recyclerInterface=recyclerInterface;
@@ -30,15 +28,17 @@ private recyclerInterface recyclerInterface;
     @NonNull
     @Override
     public recyclerAdapter.myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new recyclerAdapter.myViewHolder(
-                LayoutInflater.from(context).inflate(R.layout.pdf_library,parent,false)
-        ,recyclerInterface);
+
+        View v= LayoutInflater.from(context).inflate(R.layout.pdf_library,parent,false);
+
+       return new myViewHolder(v,recyclerInterface) ;
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull recyclerAdapter.myViewHolder holder, int position) {
         holder.txt_pdfName.setText(arrayList.get(position).getName());
-        holder.txt_pdfName.setSelected(true);
+       // holder.txt_pdfName.setSelected(true);
     }
 
     @Override

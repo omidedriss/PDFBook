@@ -15,22 +15,23 @@
         >
 
     </com.github.barteksc.pdfviewer.PDFView>
+
     <Button
-    android:id="@+id/bt_select"
-    android:layout_width="55dp"
-    android:layout_height="55dp"
-    android:background="@drawable/btn"
-    android:layout_gravity="bottom"
-    android:layout_marginLeft="320dp"
-    android:layout_marginBottom="50dp"
-    android:text="+"
-    app:layout_constraintBottom_toBottomOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.955"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.887"
-    tools:ignore="MissingConstraints" />
+        android:id="@+id/bt_select"
+        android:layout_width="48dp"
+        android:layout_height="55dp"
+        android:layout_gravity="bottom"
+        android:layout_marginLeft="320dp"
+        android:layout_marginBottom="50dp"
+        android:background="@drawable/btn"
+        android:text="+"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.955"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.887"
+        tools:ignore="MissingConstraints" />
 
 
 
